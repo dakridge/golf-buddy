@@ -3,7 +3,12 @@ import axios from "axios";
 const makeRequest = async <T>(
     url: string,
     method: "GET" | "POST" | "PATCH" | "DELETE",
-    options?: { data?: any; params?: any; token?: string, overrideHeaders?: Record<string, string> },
+    options?: {
+        data?: any;
+        params?: any;
+        token?: string;
+        overrideHeaders?: Record<string, string>;
+    }
 ): Promise<T> => {
     const fullUrl = url;
 

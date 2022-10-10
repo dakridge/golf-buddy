@@ -29,7 +29,7 @@ export interface GetTeeTimesResponse {
         sunrise: string;
         sunset: string;
         dusk: string;
-    },
+    };
     courseId: string;
     message?: string;
     teetimes: TeeTime[];
@@ -55,7 +55,7 @@ export interface CartItem {
             name: string;
             rateId: number;
             rateSetId: number;
-            transportation: 'Walking' | 'Riding';
+            transportation: "Walking" | "Riding";
         };
     };
 }
@@ -68,11 +68,11 @@ export interface Cart {
 
 export interface Reservation {
     error: string | null;
-    message: 'success' | 'error';
+    message: "success" | "error";
     reservation: {
         caddy: {
             type: string;
-        },
+        };
         _id: string; // Reservation.TrackingCode - TL:{_id}
         courseId: string;
         teetimes: {
@@ -105,13 +105,13 @@ export interface Reservation {
                     DueAtCourse: {
                         CurrencyCode: string;
                         Value: number;
-                    }
+                    };
                 };
                 HoleCount: number;
                 DueAtCourse: {
                     Summary: {
                         Total: number;
-                    }
+                    };
                 };
                 ReferenceId: string; // TeeTime.ReferenceID
                 ChannelId: string; // TeeTime.InventoryChannelID
@@ -124,11 +124,13 @@ export interface Reservation {
             alias: string;
             name: string;
             settings: {
-                enabledRates: { GolfFacilityID: number; GolfCourseID: number; }[]
+                enabledRates: {
+                    GolfFacilityID: number;
+                    GolfCourseID: number;
+                }[];
             };
         };
-        
-    }
+    };
 }
 
 export interface Reservation {

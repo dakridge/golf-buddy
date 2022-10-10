@@ -1,6 +1,5 @@
 import { formatISO, addMinutes } from "date-fns";
 
-
 interface Reservation {
     courseId: string;
     teeTime: string;
@@ -20,7 +19,7 @@ const generateReservationData = (reservation: Reservation) => {
         cartItemId: reservation.cartItemId,
         tags: "ONLINE",
         golferQuantity: reservation.golfersCount,
-        alias:" fairfax-county-mco",
+        alias: " fairfax-county-mco",
         ttl: formatISO(addMinutes(new Date(), 5)),
         sessionToken: reservation.token,
     };

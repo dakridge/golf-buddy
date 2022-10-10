@@ -1,6 +1,6 @@
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
-let cartId: null | string = '419372de-de17-4c50-b373-22c366f0fc9f';
+let cartId: null | string = "419372de-de17-4c50-b373-22c366f0fc9f";
 
 const getCartId = (): string => {
     if (cartId) {
@@ -9,6 +9,6 @@ const getCartId = (): string => {
 
     cartId = uuidv4();
     return cartId;
-}
+};
 
 export default getCartId;

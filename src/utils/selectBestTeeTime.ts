@@ -17,6 +17,6 @@ const selectBestTeeTime = (teeTimes: TeeTime[]): TeeTime => {
     // });
 
     return middleTeeTime;
-}
+};
 
 export default selectBestTeeTime;

@@ -10,7 +10,7 @@ interface Golfer {
     phone: string;
 }
 
-export type Courses = 'twinLakes' | 'laurelHill' | 'greendale' | 'burkeLake';
+export type Courses = "twinLakes" | "laurelHill" | "greendale" | "burkeLake";
 
 interface Config {
     name: string;
@@ -26,14 +26,22 @@ interface Config {
 const config: Config = {
     name: "Robert Newman",
     phone: "12025737180",
-    email: 'electricrocket@protonmail.com',
-    password: 'ryt!HVW1wma9mwd_mvz',
-    shoppingCartId: '419372de-de17-4c50-b373-22c366f0fc9f',
-    mailgunKey: 'key-8vykq367mkengx2pluy-hcjv5qrfy4i5',
+    email: "electricrocket@protonmail.com",
+    password: "ryt!HVW1wma9mwd_mvz",
+    shoppingCartId: "419372de-de17-4c50-b373-22c366f0fc9f",
+    mailgunKey: "key-8vykq367mkengx2pluy-hcjv5qrfy4i5",
 
     golfers: [
-        { name: 'Doug Akridge', email: 'doug.a.akridge@gmail.com', phone: '7036552880' },
-        { name: 'Curtis Mason', email: 'cgmasonii@gmail.com', phone: '7034779271' },
+        {
+            name: "Doug Akridge",
+            email: "doug.a.akridge@gmail.com",
+            phone: "7036552880",
+        },
+        {
+            name: "Curtis Mason",
+            email: "cgmasonii@gmail.com",
+            phone: "7034779271",
+        },
     ],
 
     courses: {
