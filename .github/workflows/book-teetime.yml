@@ -2,6 +2,7 @@
 name: Trigger Golf Buddy to Book a Tee Time
 
 on:
+    workflow_dispatch:
     schedule:
         # Runs "at minute 55 past every hour" (see https://crontab.guru)
         - cron: "59 8 * * 6,0"
