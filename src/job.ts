@@ -26,7 +26,7 @@ const main = async () => {
         );
 
         // notify golfers
-        // await notifyGolfers(course, teeTime, totalRunTime);
+        await notifyGolfers(course, teeTime, totalRunTime);
         console.log("📧 Notified golfers");
         notifiedGolfers = true;
     } catch (error) {
