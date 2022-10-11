@@ -6,7 +6,7 @@ on:
         # see https://crontab.guru
         # - cron: "0 59 * * 6,0"
         - cron: "0 59 * * *"
-        - cron: "25 * * * *"
+        - cron: "28 * * * *"
 jobs:
     build:
         name: Trigger Golf Buddy
