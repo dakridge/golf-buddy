@@ -18,6 +18,7 @@ import {
     getCart,
     createCart,
 } from "./api";
+import waitForTeetimes from "./utils/waitForTeetimes";
 import selectBestTeeTime from "./utils/selectBestTeeTime";
 import getCartId from "./utils/getCartId";
 import { format, parseISO } from "date-fns";
@@ -25,7 +26,7 @@ import getCourseNameById from "./utils/getCourseNameById";
 import notifyGolfers from "./utils/notifyGolfers";
 import getCourseById from "./utils/getCourseById";
 
-const bookTeeTime = async (date: string, courses: Courses[]) => {
+export const bookTeeTime = async (date: string, courses: Courses[]) => {
     const start = new Date();
 
     const courseIds = courses.map((course) => {
@@ -42,8 +43,14 @@ const bookTeeTime = async (date: string, courses: Courses[]) => {
     ----------------
     `);
 
-    const spinner = ora("Authenticating").start();
+    console.log(
+        `📅 Booking tee time for ${format(parseISO(date), "EEEE, MMMM do")}`
+    );
 
+    /**
+     * Authentication
+     */
+    const spinner = ora("Authenticating").start();
     const { sessionToken } = await authenticate();
     addToState("sessionToken", sessionToken);
     logger({
@@ -52,6 +59,9 @@ const bookTeeTime = async (date: string, courses: Courses[]) => {
     });
     spinner.succeed();
 
+    /**
+     * Create a cart attached to the user
+     */
     spinner.start("Getting cart id");
     const createdCart = await createCart();
     addToState("cartId", createdCart.id);
@@ -61,20 +71,28 @@ const bookTeeTime = async (date: string, courses: Courses[]) => {
     });
     spinner.succeed(`Created shopping cart with id: ${createdCart.id}`);
 
+    /**
+     * Get tee times for the date
+     */
     spinner.start("Getting tee times");
     logger({
         message: `📅 Getting tee times for courses: ${courseNames.join(", ")}`,
         type: "info",
     });
+    // const teetimes = await getTeeTimes(courseIds, date);
+    const teetimes = await waitForTeetimes(spinner, courseIds, date);
 
-    const teetimes = await getTeeTimes(courseIds, date);
+    if (teetimes === null || teetimes.length === 0) {
+        throw new Error("No tee times found");
+    }
+
     logger({
-        message: `🏌️ Found ${teetimes.teetimes.length} tee times.`,
+        message: `🏌️ Found ${teetimes.length} tee times.`,
         type: "info",
     });
-    const bestTeeTime = selectBestTeeTime(teetimes.teetimes);
+    const bestTeeTime = selectBestTeeTime(teetimes);
     const bestTeeTimeDate = parseISO(bestTeeTime.teetime);
-    spinner.succeed(`Found ${teetimes.teetimes.length} tee times.`);
+    spinner.succeed(`Found ${teetimes.length} tee times.`);
     spinner.succeed(
         `Selected Best Tee Time: ${format(bestTeeTimeDate, "E MMM d h:mm a")}`
     );
@@ -141,20 +159,20 @@ const bookTeeTime = async (date: string, courses: Courses[]) => {
     spinner.succeed(`Cleared shopping cart`);
     logger({ message: "🛒 Cleared cart", type: "info" });
 
-    // notify golfers
-    spinner.start("Notifying golfers");
-    await notifyGolfers(course, bestTeeTime);
-    spinner.succeed(`Notified golfers`);
-    logger({ message: "📧 Notified golfers", type: "info" });
-
     spinner.succeed(`Total booking time: ${totalRunTime}ms`);
+
+    return {
+        course,
+        teeTime: bestTeeTime,
+        totalRunTime,
+    };
 };
 
-const main = async () => {
-    bookTeeTime("2022-10-13", ["burkeLake"]);
-};
+// const main = async () => {
+//     bookTeeTime("2022-10-29", ["burkeLake"]);
+// };
 
-void main();
+// void main();
 
 // export default {
 // 	async scheduled(

@@ -37,11 +37,11 @@ const config: Config = {
             email: "doug.a.akridge@gmail.com",
             phone: "7036552880",
         },
-        {
-            name: "Curtis Mason",
-            email: "cgmasonii@gmail.com",
-            phone: "7034779271",
-        },
+        // {
+        //     name: "Curtis Mason",
+        //     email: "cgmasonii@gmail.com",
+        //     phone: "7034779271",
+        // },
     ],
 
     courses: {
