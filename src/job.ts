@@ -2,9 +2,8 @@
 import { formatISO, addDays } from "date-fns";
 
 // Project
-import { Course } from "./config";
-import { TeeTime } from "./models";
 import { bookTeeTime } from ".";
+import config, { Course } from "./config";
 import notifyGolfers, { notifyGolfersOfBadNews } from "./utils/notifyGolfers";
 
 const clearConsole = () => {
@@ -27,7 +26,7 @@ const main = async () => {
 
         // notify golfers
         await notifyGolfers(course, teeTime, totalRunTime);
-        console.log("📧 Notified golfers");
+        console.log(`📧 Notified ${config.golfers.length} golfers`);
         notifiedGolfers = true;
     } catch (error) {
         // pass

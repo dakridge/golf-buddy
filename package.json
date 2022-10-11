@@ -9,7 +9,7 @@
         "prepare": "husky install",
         "format": "prettier --write .",
         "build": "tsc",
-        "run": "node dist/src/job.js"
+        "run": "env TZ='America/New_York' node dist/src/job.js"
     },
     "author": "",
     "license": "ISC",

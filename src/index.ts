@@ -43,6 +43,9 @@ export const bookTeeTime = async (date: string, courses: Courses[]) => {
     ----------------
     `);
 
+    // print current time
+    console.log(`Current Time: ${format(new Date(), "EEEE, MMMM do h:mm a")}`);
+
     console.log(
         `📅 Booking tee time for ${format(parseISO(date), "EEEE, MMMM do")}`
     );
