@@ -15,5 +15,6 @@ jobs:
               with:
                   node-version: 16
             - run: npm ci
+            - run: npm run build
             - name: book tee time
-              run: node dist/src/job.js
+              run: npm run run

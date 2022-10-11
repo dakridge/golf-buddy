@@ -9,7 +9,7 @@
         "prepare": "husky install",
         "format": "prettier --write .",
         "build": "tsc",
-        "run": "node index.js"
+        "run": "node dist/src/job.js"
     },
     "author": "",
     "license": "ISC",

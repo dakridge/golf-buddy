@@ -40,6 +40,9 @@ const main = async () => {
     } catch (error) {
         console.log(error);
     }
+
+    console.log("Done!");
+    process.exit(0);
 };
 
 void main();
