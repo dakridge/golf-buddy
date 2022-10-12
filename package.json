@@ -6,7 +6,6 @@
     "scripts": {
         "test": "vitest",
         "dev": "nodemon",
-        "prepare": "husky install",
         "format": "prettier --write .",
         "build": "tsc",
         "run": "env TZ='America/New_York' node dist/src/job.js"
@@ -15,6 +14,7 @@
     "license": "ISC",
     "devDependencies": {
         "@types/fs-extra": "^9.0.13",
+        "@types/node": "^18.8.4",
         "@types/uuid": "^8.3.4",
         "@types/ws": "^8.5.3",
         "esbuild": "^0.15.10",
@@ -27,6 +27,7 @@
     },
     "dependencies": {
         "@types/figlet": "^1.5.5",
+        "airplane": "^0.2.9",
         "axios": "^1.1.2",
         "date-fns": "^2.29.3",
         "figlet": "^1.5.2",

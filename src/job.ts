@@ -44,4 +44,4 @@ const main = async () => {
     process.exit(0);
 };
 
-void main();
+export default main;
