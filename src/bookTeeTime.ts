@@ -13,6 +13,7 @@ import {
     updateCartWithReservationId,
     deleteCartItem,
     createCart,
+    addReservation,
 } from "./api";
 import waitForTeetimes from "./utils/waitForTeetimes";
 import selectBestTeeTime from "./utils/selectBestTeeTime";
@@ -128,7 +129,7 @@ const bookTeeTime = async (date: string, courses: Courses[]) => {
 
     // create a new reservation
     spinner.start("Booking tee time");
-    // await addReservation(reservation);
+    await addReservation(reservation);
     const course = getCourseById(bestTeeTime.courseId);
     spinner.stopAndPersist({
         symbol: "⛳",
