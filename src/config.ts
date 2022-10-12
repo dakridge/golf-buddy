@@ -16,7 +16,6 @@ interface Config {
     name: string;
     phone: string;
     email: string;
-    password: string;
     shoppingCartId: string;
     mailgunKey: string;
     golfers: Golfer[];
@@ -27,7 +26,6 @@ const config: Config = {
     name: "Robert Newman",
     phone: "12025737180",
     email: "electricrocket@protonmail.com",
-    password: "ryt!HVW1wma9mwd_mvz",
     shoppingCartId: "419372de-de17-4c50-b373-22c366f0fc9f",
     mailgunKey: "key-8vykq367mkengx2pluy-hcjv5qrfy4i5",
 
