@@ -10,7 +10,7 @@ const waitForTeetimes = async (
     courseIds: string[],
     date: string
 ) => {
-    const MAX_ATTEMPTS = 2;
+    const MAX_ATTEMPTS = 30;
 
     let tries = 0;
     let teetimes: TeeTime[] | null = null;

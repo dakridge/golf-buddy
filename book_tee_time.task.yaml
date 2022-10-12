@@ -41,7 +41,7 @@ name: Book Tee Time
 node:
     # The path to the .ts or .js file containing the logic for this task. This
     # can be absolute or relative to the location of the definition file.
-    entrypoint: src/job.ts
+    entrypoint: src/index.ts
 
     # The version of Node to use. Valid values: 14, 16, 18.
     nodeVersion: "16"
@@ -51,7 +51,13 @@ node:
     # with `value` mapped to the value of the environment variable; if
     # using config variables, the value must be an object with `config`
     # mapped to the name of the config variable.
-    # envVars:
+    envVars:
+        TZ:
+            value: America/New_York
+        DAYS:
+            config: DAYS
+        COURSES:
+            config: COURSES
     #   ENV_VAR_FROM_CONFIG:
     #     config: database_url
     #   ENV_VAR_FROM_VALUE:

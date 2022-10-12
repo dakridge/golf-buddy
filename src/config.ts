@@ -10,7 +10,7 @@ interface Golfer {
     phone: string;
 }
 
-export type Courses = "twinLakes" | "laurelHill" | "greendale" | "burkeLake";
+export type Courses = "TWIN_LAKES" | "LAUREL_HILL" | "GREENDALE" | "BURKE_LAKE";
 
 interface Config {
     name: string;
@@ -37,30 +37,30 @@ const config: Config = {
             email: "doug.a.akridge@gmail.com",
             phone: "7036552880",
         },
-        // {
-        //     name: "Curtis Mason",
-        //     email: "cgmasonii@gmail.com",
-        //     phone: "7034779271",
-        // },
+        {
+            name: "Curtis Mason",
+            email: "cgmasonii@gmail.com",
+            phone: "7034779271",
+        },
     ],
 
     courses: {
-        twinLakes: {
+        TWIN_LAKES: {
             name: "Twin Lakes",
             shortId: 4595,
             id: "5e3d7968ce07ad0100ad93d0",
         },
-        laurelHill: {
+        LAUREL_HILL: {
             name: "Laurel Hill",
             shortId: 4596,
             id: "54f14cf20c8ad60378b03119",
         },
-        greendale: {
+        GREENDALE: {
             name: "Greendale",
             shortId: 4597,
             id: "54f14e530c8ad60378b04dad",
         },
-        burkeLake: {
+        BURKE_LAKE: {
             name: "Burke Lake",
             shortId: 4598,
             id: "5e43088775a12b0100190df2",
