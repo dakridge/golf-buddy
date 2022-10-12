@@ -17,11 +17,12 @@ import {
     CartItem,
     Reservation,
 } from "../models";
+import getPassword from "../utils/getPassword";
 
 // authenticates to the teeitup api
 export const authenticate = async () => {
     const email = config.email;
-    const password = config.password;
+    const password = getPassword();
 
     try {
         const storedToken = await readFile("./credentials.txt", "utf8");

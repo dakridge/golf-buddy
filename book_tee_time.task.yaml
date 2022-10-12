@@ -58,6 +58,8 @@ node:
             config: DAYS
         COURSES:
             config: COURSES
+        PASSWORD:
+            config: password
     #   ENV_VAR_FROM_CONFIG:
     #     config: database_url
     #   ENV_VAR_FROM_VALUE:
