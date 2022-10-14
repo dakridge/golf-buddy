@@ -76,8 +76,8 @@ const bookTeeTime = async (date: string, courses: Courses[]) => {
         message: `📅 Getting tee times for courses: ${courseNames.join(", ")}`,
         type: "info",
     });
-    // const teetimes = await getTeeTimes(courseIds, date);
     const teetimes = await waitForTeetimes(spinner, courseIds, date);
+    const bookingStartTime = new Date();
 
     if (teetimes === null || teetimes.length === 0) {
         throw new Error("No tee times found");
@@ -126,6 +126,7 @@ const bookTeeTime = async (date: string, courses: Courses[]) => {
     logger({ message: "🛒 Updated cart item with reservation", type: "info" });
 
     const totalRunTime = new Date().getTime() - start.getTime();
+    const bookingRunTime = new Date().getTime() - bookingStartTime.getTime();
 
     // create a new reservation
     spinner.start("Booking tee time");
@@ -162,6 +163,7 @@ const bookTeeTime = async (date: string, courses: Courses[]) => {
         course,
         teeTime: bestTeeTime,
         totalRunTime,
+        bookingRunTime,
     };
 };
 

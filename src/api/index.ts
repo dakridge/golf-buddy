@@ -63,20 +63,27 @@ export const addTeeTimeToCart = async (teetime: TeeTime) => {
         "cartId"
     )}/cart-item`;
 
+    // a teetime can have both a 9 hole rate and an 18 hole rate
+    const rate18Holes = teetime.rates.find((rate) => rate.holes === 18);
+
+    if (!rate18Holes) {
+        throw new Error("Could not find 18 hole rate");
+    }
+
     const data = {
         item: {
-            facilityId: teetime.rates[0].golfFacilityId,
+            facilityId: rate18Holes.golfFacilityId,
             type: "TeeTime",
             extra: {
                 featuredProducts: [],
-                players: 1,
-                price: teetime.rates[0].greenFeeWalking / 100,
+                players: teetime.maxPlayers,
+                price: rate18Holes.greenFeeWalking / 100,
                 teetime: teetime.teetime,
                 rate: {
                     holes: 18,
                     name: "18 Holes",
-                    rateId: teetime.rates[0].golfnow.TTTeeTimeId,
-                    rateSetId: teetime.rates[0].golfnow.GolfCourseId,
+                    rateId: rate18Holes.golfnow.TTTeeTimeId,
+                    rateSetId: rate18Holes.golfnow.GolfCourseId,
                     transportation: "Walking",
                 },
             },

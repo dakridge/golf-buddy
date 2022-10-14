@@ -13,7 +13,7 @@ const clearConsole = () => {
 const bookTeeTimeWrapper = async (bookingDate: Date, courses: Courses[]) => {
     try {
         // book tee time
-        const { course, teeTime, totalRunTime } = await bookTeeTime(
+        const { course, teeTime, bookingRunTime } = await bookTeeTime(
             formatISO(bookingDate, { representation: "date" }),
             courses
         );
@@ -21,7 +21,7 @@ const bookTeeTimeWrapper = async (bookingDate: Date, courses: Courses[]) => {
         return {
             course,
             teeTime,
-            totalRunTime,
+            bookingRunTime,
         };
     } catch (error) {
         // pass
@@ -51,7 +51,7 @@ const main = async () => {
     let notifiedGolfers = false;
     let course: any = null;
     let teeTime: any = null;
-    let totalRunTime: any = null;
+    let bookingRunTime: any = null;
 
     try {
         // book tee time
@@ -59,10 +59,10 @@ const main = async () => {
 
         course = data.course;
         teeTime = data.teeTime;
-        totalRunTime = data.totalRunTime;
+        bookingRunTime = data.bookingRunTime;
 
         // notify golfers
-        await notifyGolfers(course, teeTime, totalRunTime);
+        await notifyGolfers(course, teeTime, bookingRunTime);
         console.log(`📧 Notified ${config.golfers.length} golfers`);
         notifiedGolfers = true;
     } catch (error) {
@@ -82,7 +82,7 @@ const main = async () => {
     return {
         course,
         teeTime,
-        "totalRunTime (ms)": totalRunTime,
+        "totalRunTime (ms)": bookingRunTime,
     };
 };
 
