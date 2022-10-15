@@ -8,6 +8,7 @@ import {
     setMinutes,
     format,
 } from "date-fns";
+import getCourseById from "../getCourseById";
 
 const selectBestTeeTime = (teeTimes: TeeTime[]): TeeTime => {
     const EARLY_TEE_TIME = 9;
@@ -28,11 +29,27 @@ const selectBestTeeTime = (teeTimes: TeeTime[]): TeeTime => {
             (availableSpots - (config.golfers.length - 1)) * 100;
         score += availableSpotsScore;
 
+        // if there aren't enough spots, don't even consider it
+        if (availableSpots < config.golfers.length) {
+            score -= 1000;
+        }
+
         // calculate the time delta score
         let earlyCutoffScore = 0;
 
         if (date < earlyCutOff) {
             earlyCutoffScore = 400 + timeDelta;
+        }
+
+        // add extra points based on course
+        try {
+            const course = getCourseById(teeTime.courseId);
+
+            if (course.extraWeight) {
+                score += course.extraWeight;
+            }
+        } catch (e) {
+            //
         }
 
         score += earlyCutoffScore;

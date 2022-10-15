@@ -36,7 +36,6 @@ const waitForTeetimes = async (
     const startPollingTime = startOfMinute(
         setMinutes(setHours(new Date(), 20), 59)
     );
-    console.log(startPollingTime);
     await waitUntilTime(startPollingTime);
 
     while (teetimes === null) {

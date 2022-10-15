@@ -2,6 +2,7 @@ export interface Course {
     id: string;
     name: string;
     shortId: number;
+    extraWeight?: number;
 }
 
 interface Golfer {
@@ -47,6 +48,7 @@ const config: Config = {
             name: "Twin Lakes",
             shortId: 4595,
             id: "5e3d7968ce07ad0100ad93d0",
+            extraWeight: 50,
         },
         LAUREL_HILL: {
             name: "Laurel Hill",

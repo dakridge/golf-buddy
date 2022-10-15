@@ -139,6 +139,7 @@ const bookTeeTime = async (date: string, courses: Courses[]) => {
             "E MMM d h:mm a"
         )}`,
     });
+    spinner.succeed(`Booked tee time at ${format(new Date(), "h:mm:s.SSS a")}`);
     logger({
         message: `⛳ Booked Tee Time! ${course.name} ${format(
             bestTeeTimeDate,
